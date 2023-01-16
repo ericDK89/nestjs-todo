@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  ValidationPipe,
 } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { PrismaUserService } from 'src/repositories/users/prisma/prisma-user.service';
@@ -17,7 +18,7 @@ export class UserController {
   @Post()
   createUser(@Body() user: User) {
     const { name } = user;
-    this.prismaUserService.create(name);
+    this.prismaUserService.create({ name });
   }
 
   @Get(':id')

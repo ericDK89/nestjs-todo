@@ -7,7 +7,9 @@ import { UserRepositoryClass } from '../user-repository-class';
 export class PrismaUserService implements UserRepositoryClass {
   constructor(private prisma: PrismaService) {}
 
-  async create(name: string): Promise<void> {
+  async create(todo: User): Promise<void> {
+    const { name } = todo;
+
     await this.prisma.user.create({
       data: {
         name,
